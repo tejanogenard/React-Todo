@@ -59,11 +59,20 @@ class App extends React.Component {
               // completed: false 
             completed: !taskItem.completed
           }
+        } else{
+          return taskItem
         }
       })
 
     })
   }
+
+addTask = taskItem => {
+  
+}
+
+
+
 
   render() {
     return (

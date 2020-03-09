@@ -1,0 +1,43 @@
+import React from 'react'
+
+class TodoForm extends React.Component {
+    //Constructor with state
+    constructor(){
+        super();
+        this.state = {
+            task: ''
+        }
+    }
+
+    handleChanges = e => {
+        //update state with everykeystoke
+        this.setState({
+            item: e.target.value
+        })
+    }
+
+
+    handleSumbit = e => {
+        e.preventDefault();
+        this.setState({
+            task: ''
+        })
+    }
+
+    render(){
+        return(
+            <form onSubmit = {this.handleSumbit}>
+                {/*Controll this component through State */}
+            <input
+                type = 'text'
+                name = 'task'
+                value = {this.handleChanges}
+                />
+            <button>Add</button>
+            </form>
+        )
+    }
+
+}   // end of class 
+
+export default TodoForm
