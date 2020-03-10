@@ -12,13 +12,14 @@ class TodoForm extends React.Component {
     handleChanges = e => {
         //update state with everykeystoke
         this.setState({
-            item: e.target.value
+            task: e.target.value
         })
     }
 
 
     handleSumbit = e => {
         e.preventDefault();
+        this.props.addTask(this.state.task)
         this.setState({
             task: ''
         })
@@ -31,7 +32,8 @@ class TodoForm extends React.Component {
             <input
                 type = 'text'
                 name = 'task'
-                value = {this.handleChanges}
+                value = {this.state.task}
+                onChange = {this.handleChanges}
                 />
             <button>Add</button>
             </form>
