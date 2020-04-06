@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import TodoList from './components/TodoList';
-import TodoForm from './components/TodoForm'; 
+import TodoForm from './components/TodoForm';
+import './components/Todo.css'
 
 
-const tasks = [
-  {
+const tasks = [{
     task: 'Organize Garage',
     id: 1,
     completed: false
@@ -24,6 +23,16 @@ const tasks = [
     task: 'Pick up dry-cleaning',
     id: 4,
     completed: false
+  },
+  {
+    task: 'Organize Room',
+    id: 5,
+    completed: false
+  },
+  {
+    task: 'Clean house',
+    id: 6,
+    completed: false
   }
 ]
 
@@ -33,51 +42,56 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
 
   //Constructor with state
-  constructor(){
-  // initialize component state  
-    super();  // this.state, this.setState, lifecycle methods
+  constructor() {
+    // initialize component state  
+    super(); // this.state, this.setState, lifecycle methods
     this.state = {
-      tasks, //  tasks: tasks 
-      task: '',
-      id: Number, 
-      completed: false 
+      tasks: tasks //  tasks: tasks 
     }
   }
 
   //Class methods to update the state
   toggleTask = clickedItemID => {
+
     //recreate the object-array "immutable"
     //array -> (spread operator), Or immutable array methods 
 
     this.setState({
       tasks: this.state.tasks.map(taskItem => {
-        if(taskItem.id === clickedItemID){
-          return{
+        if (taskItem.id === clickedItemID) {
+          console.log(taskItem.id)
+          return {
             ...taskItem,
-              // task: '',
-              // id: Number, 
-              // completed: false 
             completed: !taskItem.completed
           }
-        } else{
+        } else {
           return taskItem
         }
       })
-
     })
   }
 
-addTask = taskItem => {
-  // add a new task to the Todo State
-  const newTask = {
-    task: '',
-    id: new Date(),
-    completed: false 
+  addTask = taskItem => {
+
+    console.log(taskItem)
+    // add a new task to the Todo State
+    const newTask = {
+      task: taskItem,
+      id: new Date(),
+      completed: false
+    }
+    this.setState({
+      tasks: [...this.state.tasks, newTask]
+    })
   }
-  this.setState({
-    tasks: [...this.state.tasks, newTask] 
-  })
-}
+
+
+  clearCompleted = e => {
+    e.preventDefault();
+    this.setState({
+      tasks: this.state.tasks.filter(task => !task.completed)
+    });
+  };
 
 
   render() {
@@ -89,10 +103,10 @@ addTask = taskItem => {
         </div>
         <TodoList 
         tasks = {this.state.tasks}
-        toggoleTask = {this.toggleTask}/>
+        toggleTask = {this.toggleTask}
+         clearCompleted = {this.clearCompleted}/>
       </div>
     );
   }
 }
-
 export default App

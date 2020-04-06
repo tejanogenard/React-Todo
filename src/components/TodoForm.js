@@ -28,7 +28,6 @@ class TodoForm extends React.Component {
     render(){
         return(
             <form onSubmit = {this.handleSumbit}>
-                {/*Controll this component through State */}
             <input
                 type = 'text'
                 name = 'task'
