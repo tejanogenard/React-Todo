@@ -20,22 +20,25 @@ class TodoForm extends React.Component {
     handleSumbit = e => {
         e.preventDefault();
         this.props.addTask(this.state.task)
-        this.setState({
-            task: ''
-        })
+        // lets try to uselocalstorage inside my handleSubmit
+
     }
 
     render(){
         return(
-            <form onSubmit = {this.handleSumbit}>
+           
+            <form className = "form"
+                  onSubmit = {this.handleSumbit}>
             <input
+                
                 type = 'text'
                 name = 'task'
                 value = {this.state.task}
                 onChange = {this.handleChanges}
                 />
-            <button>Add</button>
+            <button className ="todoButton">Add</button>
             </form>
+ 
         )
     }
 

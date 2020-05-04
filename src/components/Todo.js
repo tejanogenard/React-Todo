@@ -2,6 +2,7 @@ import React from 'react';
 
 const Todo = props => {
  return(
+    <div className = "task">
          <div
       onClick={() => props.toggleTask(props.taskItem.id)}
     > 
@@ -9,9 +10,8 @@ const Todo = props => {
           {props.taskItem.task}
           </p>
     </div>
+  </div>
       
-
-
  )
 }
 
